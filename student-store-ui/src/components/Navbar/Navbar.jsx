@@ -1,14 +1,13 @@
 import * as React from "react"
 import "./Navbar.css"
-//import {} from "react-router-dom"
-//import Logo from
+//import Logo from 
 
 export default function Navbar() {
   return (
     <nav className="navbar">
       <p>Navbar</p>
       <div>
-
+      <Logo />
       </div>
     </nav>
   )
@@ -17,11 +16,12 @@ export default function Navbar() {
   return(
     <nav className = "navlinks">
       <div> 
-        <Link to ={"/Home"} className = "nav-link" >Home</Link>
-        <Link to ={"/About"} className = "nav-link" >Home</Link>
-        <Link to ={"/Contact"} className = "nav-link" >Home</Link>
-        <Link to ={"/Buy"} className = "nav-link" >Home</Link>
+        <Link to ={"/"} className = "nav-link" >Home</Link>
+        <Link to ={"/#about"} className = "nav-link" >About us</Link>
+        <Link to ={"/#contact"} className = "nav-link" >Contact us</Link>
+        <Link to ={"/#buy"} className = "nav-link" >Buy Now</Link>
       </div>
     </nav>
   )
  }
+  
