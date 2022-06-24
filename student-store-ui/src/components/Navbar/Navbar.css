@@ -1,9 +1,13 @@
-
-.navbar{
-
+.navbar {
+  position: fixed;
+  display: flex;
+  color: White;
 }
 
-
-.navlinks{
-
+.navlinks {
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  gap: 100px;
 }
