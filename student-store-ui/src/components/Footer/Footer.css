@@ -1,0 +1,8 @@
+.footer-links-container {
+  padding: 40px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 90%;
+}

@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
   return (
     <nav className="navbar">
-      <div className="items">
+      <div className="logo">
         <Logo />
-
+      </div>
+      <div>
         <NavLinks />
       </div>
     </nav>
@@ -16,18 +17,18 @@ export default function Navbar() {
 }
 export function NavLinks() {
   return (
-    <nav className="navlinks">
+    <nav className="navLinks">
       <div>
-        <Link to={"/"} className="nav-link">
+        <Link to={"/"} className="singleNavLink">
           Home
         </Link>
-        <Link to={"/#about"} className="nav-link">
+        <Link to={"/#about"} className="singleNavLink">
           About us
         </Link>
-        <Link to={"/#contact"} className="nav-link">
+        <Link to={"/#contact"} className="singleNavLink">
           Contact us
         </Link>
-        <Link to={"/#buy"} className="nav-link">
+        <Link to={"/#buy"} className="singleNavLink">
           Buy Now
         </Link>
       </div>

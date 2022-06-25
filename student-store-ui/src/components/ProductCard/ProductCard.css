@@ -1,3 +1,26 @@
 .product-card {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 250px;
+  height: 350px;
+  margin: 20px;
+  border: solid 1px #e4e4e4;
+}
+
+.media img {
+  height: 250px;
+  width: 240px;
+  object-fit: cover;
+  border-radius: 2px;
+  border: solid 1px #513f3f;
+}
+.product-name h1 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.product-price h2 {
+  font-size: 14px;
+  font-weight: 300;
 }

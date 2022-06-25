@@ -1,13 +1,41 @@
 .navbar {
-  position: fixed;
+  width: 100%;
+  max-width: 100vw;
+  background: #2c4047;
+  color: white;
+  height: 70px;
   display: flex;
-  color: White;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 100px;
 }
 
-.navlinks {
+.logo,
+.navLinks {
+  color: white;
   display: flex;
   align-items: center;
   margin: 20px;
-  padding: 20px;
+  justify-content: space-around;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.navLinks {
+  display: flex;
   gap: 100px;
+  flex-grow: 2;
+}
+
+.singleNavLink {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  justify-content: space-between;
+  color: white;
 }

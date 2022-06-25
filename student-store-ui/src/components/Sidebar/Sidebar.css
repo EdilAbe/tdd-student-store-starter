@@ -1,3 +1,22 @@
-#sidenav {
+.sidebar {
+  background: #2c4047;
   position: fixed;
+  height: 100%;
+  max-width: 500px;
+  transition: width 0.5s;
+  transition-timing-function: ease-in-out;
+  color: white;
+}
+
+/* .hidden {
+  width: 150px;
+} */
+
+.hidden > .sidebar-contents {
+  display: none;
+  width: 150px;
+}
+
+.sidebar-contents {
+  margin: 20px;
 }

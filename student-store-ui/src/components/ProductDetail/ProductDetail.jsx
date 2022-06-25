@@ -1,8 +1,14 @@
 import * as React from "react";
 import "./ProductDetail.css";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import ProductView from "/src/components/ProductView/ProductView";
+//import NotFound from "/src/components/NotFound/NotFound";
 
 export default function ProductDetail(props) {
   const [product, setProduct] = React.useState([]);
+  const { productId } = useParams();
+
   const getProductData = async () => {
     props.setIsFetching(true);
     try {
@@ -25,7 +31,14 @@ export default function ProductDetail(props) {
 
   return (
     <div className="Product-detail">
-      <p>{product}</p>
+      <ProductView
+        products={products}
+        productId={productId}
+        // quantity={productQuantity}
+        handleAddItemToCart={props.handleAddItemToCart}
+        handleRemoveItemFromCart={props.handleRemoveItemFromCart}
+        shoppingCart={props.shoppingCart}
+      />
     </div>
   );
 }

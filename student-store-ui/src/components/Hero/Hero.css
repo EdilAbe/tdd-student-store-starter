@@ -1,0 +1,30 @@
+.hero {
+  height: 50vh;
+  margin-top: var(--navbar-height);
+  background-color: #00c385;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro {
+  width: 50vw;
+  color: white;
+}
+
+.intro > h1 {
+  font-size: 54px;
+  color: white;
+  margin: 0;
+}
+
+.intro > h2 {
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+}
+
+.hero-img {
+  height: 150%;
+}

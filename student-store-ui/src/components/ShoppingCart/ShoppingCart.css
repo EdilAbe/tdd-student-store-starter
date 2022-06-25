@@ -1,0 +1,12 @@
+table {
+  width: 100%;
+  text-align: left;
+}
+
+table,
+thead,
+th,
+tr,
+td {
+  border: solid black;
+}
