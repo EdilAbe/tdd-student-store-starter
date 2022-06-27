@@ -40,7 +40,7 @@ export default function Home({
 export function Searchbar() {
   return (
     <div  className="search-bar">
-      <input type="text" id="searchbox-input" className="search-input"> placeholder="Search"></input>
+      <input type="text" id="searchbox-input" className="search-input"> placeholder="Search"</input>
       <i className = "material-icons">search</i>
   
 
@@ -49,13 +49,13 @@ export function Searchbar() {
       <i className = "material-icons">help</i>
         help
         </span>
-{/*    
+    
      <div className = "cart">
      <a href = "/">
      <i className = "material-icons">shopping_cart</i>
      
      </a>
-   </div> */}
+   </div> 
    </div>
    </div>
   );
@@ -65,7 +65,7 @@ export function CategoryFilterBar() {
   return (
     <div className="category-filter-bar">
       <CategoryFilter />
-      {/* <div class="row">
+       <div class="row">
         <div class="hamburger-menu">
         <i class="material-icons">menu</i>
         </div>
@@ -81,7 +81,7 @@ export function CategoryFilterBar() {
                 </li>
                 <li class=""><button>Tech</button>
                 </li>
-                </ul></div> */}
+                </ul></div> 
     </div>
   );
 }
