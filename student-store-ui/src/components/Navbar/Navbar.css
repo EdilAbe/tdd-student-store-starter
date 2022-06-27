@@ -15,7 +15,6 @@
   color: white;
   display: flex;
   align-items: center;
-  margin: 20px;
   justify-content: space-around;
 }
 
@@ -38,4 +37,6 @@
   font-size: 18px;
   justify-content: space-between;
   color: white;
+  margin-right: 40px;
+
 }

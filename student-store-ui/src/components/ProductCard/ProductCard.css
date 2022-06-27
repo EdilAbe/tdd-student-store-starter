@@ -11,16 +11,31 @@
 .media img {
   height: 250px;
   width: 240px;
+  margin: 10px;
   object-fit: cover;
   border-radius: 2px;
-  border: solid 1px #513f3f;
+  border: solid 2px #513f3f;
 }
-.product-name h1 {
-  font-size: 18px;
-  font-weight: 400;
+.product-name {
+  font-size: 20px;
+  font-weight: 600;
 }
 
-.product-price h2 {
-  font-size: 14px;
-  font-weight: 300;
+.product-price  {
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 30px;
+}
+.product-info {
+  flex: 1;
+  display: flex;
+  border:  1px black;
+background-color: #80d396;
+;}
+
+.itemBtn{
+margin: 60px 10px 40px 10px;
+display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
 }

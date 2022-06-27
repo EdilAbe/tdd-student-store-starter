@@ -10,19 +10,22 @@ export default function Home({
   products,
   handleAddItemToCart,
   handleRemoveItemToCart,
+  shoppingCart,
+
 }) {
   return (
     <div className="home">
       <Hero />
+      {/* <Searchbar className  = "Searchbar"/>
+      <CategoryFilterBar className = "categoryFilterBar" /> */}
       <div className="main-content">
         <div className="product-area">
-          <Searchbar />
-          <CategoryFilterBar />
+          
           <ProductGrid
             products={products}
-            // shoppingCart={shoppingCart}
-            // handleAddItemToCart={handleAddItemToCart}
-            // handleRemoveItemToCart={handleRemoveItemToCart}
+             shoppingCart={shoppingCart}
+             handleAddItemToCart={handleAddItemToCart}
+            handleRemoveItemToCart={handleRemoveItemToCart}
           />
         </div>
         <div ClassName="summmary">
@@ -36,10 +39,25 @@ export default function Home({
 
 export function Searchbar() {
   return (
-    <form className="search-bar">
-      <input type="text" id="searchbox-input" placeholder="Search"></input>
-      <button id="search-button"></button>
-    </form>
+    <div  className="search-bar">
+      <input type="text" id="searchbox-input" className="search-input"> placeholder="Search"></input>
+      <i className = "material-icons">search</i>
+  
+
+     <div className = "links">
+     <span className = "help">
+      <i className = "material-icons">help</i>
+        help
+        </span>
+{/*    
+     <div className = "cart">
+     <a href = "/">
+     <i className = "material-icons">shopping_cart</i>
+     
+     </a>
+   </div> */}
+   </div>
+   </div>
   );
 }
 
@@ -47,6 +65,23 @@ export function CategoryFilterBar() {
   return (
     <div className="category-filter-bar">
       <CategoryFilter />
+      {/* <div class="row">
+        <div class="hamburger-menu">
+        <i class="material-icons">menu</i>
+        </div>
+        <ul class="category-menu open">
+          <li class="is-active">
+          <button>All Categories</button></li>
+          <li class="">
+            <button>Clothing</button></li>
+            <li class="">
+              <button>Food</button></li>
+              <li class="">
+                <button>Accessories</button>
+                </li>
+                <li class=""><button>Tech</button>
+                </li>
+                </ul></div> */}
     </div>
   );
 }
@@ -92,7 +127,7 @@ export function ContactUs() {
     <div className="contact-us">
       <h2 className="section-header">Contact Us</h2>
       <div className="contactUsBody">
-        <div className="contactUsGrid">
+        <div className="contactUsGridItem">
           <div className="contactGridItem">Email</div>
           <div className="contactGridItem">code@path.org</div>
           <div className="contactGridItem">Phone</div>
@@ -101,7 +136,7 @@ export function ContactUs() {
           <div className="contactGridItem">
             123 Fake Street, San Francisco, CA
           </div>
-          <div className="contactGridItem">Socials</div>
+          {/* <div className="media"><img src ="https://codepath-student-store-demo.surge.sh/assets/happy_person.517b658d.svg"/></div> */}
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ export default function App() {
   const [products, setProducts] = React.useState([]);
   const [isOpen, setIsOpen] = React.useState("");
   // const [error, setError] = React.useState("");
-  const [shoppingCart, setShoppingCart] = React.useState([]);
+  const [shoppingCart, setShoppingCart] = React.useState(0);
   const [checkoutForm, setCheckoutForm] = React.useState("");
 
   function handleOnToggle() {
@@ -23,16 +23,25 @@ export default function App() {
   }
 
   const handleAddItemToCart = (productId) => {
-    for (var i = 0; i < shoppingCart.length; i++) {
-      /* write code here */
-    }
-  };
+      for (let i = 0; i < shoppingCart.length; i++) {
+        if (shoppingCart[i].productId === productId) {
+          shoppingCart[i].quantity++;
+          setShoppingCart([...shoppingCart]);
+          return;  }  
+  }};
 
   const handleRemoveItemFromCart = (productId) => {
     for (var i = 0; i < shoppingCart.length; i++) {
-      /* write code here */
-    }
-  };
+      if (shoppingCart[i].productId === productId) {
+        if (shoppingCart[i].quantity === 1) {
+          shoppingCart.splice(i, 1);
+        } else {
+          shoppingCart[i].quantity--;
+        }
+        setShoppingCartPrice(shoppingCartPrice - price);
+        setShoppingCart([...shoppingCart]);
+        return;    }
+  }};
 
   function handleOnCheckoutFormChange(name, value) {
     setCheckoutForm([name, value]);

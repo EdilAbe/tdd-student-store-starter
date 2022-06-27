@@ -1,9 +1,4 @@
-.home,
-.main-content,
-.product-area {
-  display: flex;
-  flex-direction: column;
-}
+
 
 .home {
   width: 100%;
@@ -11,7 +6,6 @@
   height: 100%;
   min-height: 100vh;
   gap: 100px;
-  background-color: var(--bg-light-grey);
 }
 
 .main-content {
@@ -25,9 +19,7 @@
   gap: 40px;
 }
 
-.contactUsBody {
-  background-color: var(--codepath-dark-grey);
-}
+
 .contactUsGrid {
   display: flex;
   flex-flow: row wrap;
@@ -38,4 +30,42 @@
 
 .contactGridItem {
   margin: 10px;
+}
+
+.contact-us {
+  background: #2c4047;
+height: 320px;
+color: white;
+
+}
+
+.media .contact-us {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about{
+  background: #2c4047;
+  height: 320px;
+  color:white;
+}
+
+
+.search-bar{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.category-filter-bar{
+  border-bottom: 4px solid black;
+  padding: 13px 20px;
+}
+
+.search-button{
+border: solid black;
+padding:10px ;
+margin: 5px;
 }
