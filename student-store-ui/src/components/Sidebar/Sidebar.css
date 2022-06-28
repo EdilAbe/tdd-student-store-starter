@@ -18,5 +18,9 @@
 }
 
 .sidebar-contents {
-  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+  margin-right: 40px;
 }
