@@ -3,17 +3,23 @@ import * as React from "react";
 import ProductCard from "../ProductCard/ProductCard";
 import "./ProductGrid.css";
 
-export default function ProductGrid(props) {
+export default function ProductGrid({
+  products,
+  handleAddItemToCart,
+  shoppingCart,
+  handleRemoveItemFromCart,
+}) {
   return (
     <div className="product-grid">
-      {props.products.map((product) => {
+      {products.map((item) => {
         return (
           <ProductCard
-            key={product.id}
-            product={product}
-            productId={product.id}
-            // handleAddItemToCart={props.handleAddItemToCart}
-            // handleRemoveItemFromCart={props.handleRemoveItemFromCart}
+            key={item.id}
+            product={item}
+            productId={item.id}
+            // quantity={quantity}
+            handleAddItemToCart={handleAddItemToCart}
+            handleRemoveItemFromCart={handleRemoveItemFromCart}
             showDescription={false}
           />
         );

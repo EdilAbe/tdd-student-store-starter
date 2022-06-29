@@ -1,4 +1,7 @@
 .product-view {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px #e4e4e4;
   padding: 30px;
   margin: 0 auto;
   max-width: 800px;

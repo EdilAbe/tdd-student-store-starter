@@ -1,17 +1,9 @@
-.home,
-.main-content,
-.product-area {
-  display: flex;
-  flex-direction: column;
-}
-
 .home {
   width: 100%;
   max-width: 100vw;
   height: 100%;
   min-height: 100vh;
   gap: 100px;
-  background-color: var(--bg-light-grey);
 }
 
 .main-content {
@@ -25,9 +17,6 @@
   gap: 40px;
 }
 
-.contactUsBody {
-  background-color: var(--codepath-dark-grey);
-}
 .contactUsGrid {
   display: flex;
   flex-flow: row wrap;
@@ -38,4 +27,109 @@
 
 .contactGridItem {
   margin: 10px;
+}
+
+.contact-us {
+  background: #2c4047;
+  height: 320px;
+  color: white;
+}
+
+.media .contact-us {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about {
+  background: #2c4047;
+  height: 320px;
+  color: white;
+}
+
+#searchbox-input {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  padding: 015px;
+  border-radius: 8px 0 0 8px;
+  border: solid 1px #e4e4e4;
+  flex: 1;
+  font-size: 16px;
+}
+.links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.help {
+  color: #969696;
+  margin-right: 10px;
+}
+.cart a {
+  color: #fff;
+  background: #00c385;
+  margin: 0 5px;
+  text-decoration: none;
+  width: 100px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+  margin-right: 70px;
+}
+.subNavbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.search-bar .material-icons {
+  height: 40px;
+  width: 40px;
+  background: #00c385;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.category-filter-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex: 1;
+  list-style-type: none;
+  height: 40px;
+  font-weight: 500;
+}
+
+.category-filter-bar li.is-active button {
+  border-bottom: solid 2px #00c385;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0;
+  font-weight: 500;
+  background-color: transparent;
+  font-size: 18px;
+  padding-bottom: 10px;
+  border: solid 2px transparent;
+}
+.category-filter {
+  width: 100%;
+  padding: 12px 15px;
+  text-align: left;
+  margin-top: 10px;
+  font-weight: 500;
 }

@@ -4,48 +4,51 @@ import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
 
 export default function Sidebar(props) {
-  const sidebarClassOpen = props.isOpen ? "sidebar" : "sidebar hidden";
+  const sidebarClosed = props.isOpen ? "sidebar hidden" : "sidebar open";
+  const sidebarOpen = props.isOpen ? "sidebar open" : "sidebar hidden";
 
   return (
-    <section className={sidebarClassOpen}>
-      <button className="toggle-button" onClick={props.handleOnToggle}>
-        <i className="material-icons md-48">arrow_forward</i>
-      </button>
-      <div className="sidebar-contents">
-        <section className="sidebar opened">
-          <div className="wrapper">
-            {/* <button className="toggle-button">
-              <i className="material-icons md-48">arrow_backward</i>
-            </button> */}
-            <div className="shopping-cart">
-              <div className="cart-icons">
-                <span className="cart-icon">
-                  <i className="material-icons md 48">add_shopping_cart</i>
-                </span>
-                <span className="cart-icon">
-                  <i className="material-icons md 48">monetization_on</i>
-                </span>
-                <span className="cart-icon">
-                  <i className="material-icons md 48">fact_check</i>
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
+    <section className="sidebar">
+      <section className={sidebarClosed}>
+        <button onClick={props.handleOnToggle}>
+          <i className="material-icons md-48">arrow_forward</i>
+        </button>
+        <span className="cart-icon">
+          <i className="material-icons md 48">add_shopping_cart</i>
+        </span>
+        <span className="cart-icon">
+          <i className="material-icons md 48">monetization_on</i>
+        </span>
+        <span className="cart-icon">
+          <i className="material-icons md 48">fact_check</i>
+        </span>
+      </section>
+      <section className={sidebarOpen}>
+        <button onClick={props.handleOnToggle}>
+          <i className="material-icons md-48">arrow_backward</i>
+        </button>
 
-        <section class="sidebar opened">
-          <div class="wrapper"></div>
-        </section>
-
-        {/* <h3>Shopping Cart</h3>
+        <div className="sidebar-contents">
+          <section className="sidebar opened"></section>
+        </div>
+        <h3>Shopping Cart</h3>
         <ShoppingCart
           isOpen={props.isOpen}
+          ShoppingCart={props.ShoppingCart}
           products={props.products}
-          shoppingCart={props.shoppingCart}
+          subtotal={props.subtotal}
+          //quantity = {props.ShoppingCart.length}
         />
         <h3>Checkout</h3>
-        <CheckoutForm /> */}
-      </div>
+
+        <CheckoutForm
+          isOpen={props.handleOnSubmitCheckoutForm}
+          ShoppingCart={props.ShoppingCart}
+          CheckoutForm={props.CheckoutForm}
+          //handleOnSubmitCheckoutForm = {props.handleOnSubmitCheckoutForm}
+          //handleonCheckoutFormChange = {props.handleOnCheckoutFormChange}
+        />
+      </section>
     </section>
   );
 }

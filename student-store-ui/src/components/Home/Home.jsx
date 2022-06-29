@@ -15,14 +15,14 @@ export default function Home({
     <div className="home">
       <Hero />
       <div className="main-content">
+        <SubNavbar />
+        <CategoryFilterBar />
         <div className="product-area">
-          <Searchbar />
-          <CategoryFilterBar />
           <ProductGrid
             products={products}
             // shoppingCart={shoppingCart}
             // handleAddItemToCart={handleAddItemToCart}
-            // handleRemoveItemToCart={handleRemoveItemToCart}
+            // handleRemoveItemFromCart={handleRemoveItemFromCart}
           />
         </div>
         <div ClassName="summmary">
@@ -34,25 +34,71 @@ export default function Home({
   );
 }
 
-export function Searchbar() {
-  return (
-    <form className="search-bar">
-      <input type="text" id="searchbox-input" placeholder="Search"></input>
-      <button id="search-button"></button>
-    </form>
-  );
-}
-
 export function CategoryFilterBar() {
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.id);
+  };
   return (
-    <div className="category-filter-bar">
-      <CategoryFilter />
+    <div className="category-filter">
+      <ul className="category-filter-bar">
+        <li className="is-active">
+          <button id="all" onClick={handleCategoryChange}>
+            All Categories
+          </button>
+        </li>
+        <li className="is-active">
+          <button id="clothing" onClick={handleCategoryChange}>
+            Clothing
+          </button>
+        </li>
+        <li className="is-active">
+          <button id="food" onClick={handleCategoryChange}>
+            Food
+          </button>
+        </li>
+        <li className="is-active">
+          <button id="accessories" onClick={handleCategoryChange}>
+            Accessories
+          </button>
+        </li>
+        <li className="is-active">
+          <button id="tech" onClick={handleCategoryChange}>
+            Tech
+          </button>
+        </li>
+      </ul>
     </div>
   );
 }
 
-export function CategoryFilter(props) {
-  return <button className="buttonClassName">{props.label}</button>;
+export function SubNavbar() {
+  const handleOnTextChange = (event) => {
+    setSearchValue(event.target.value);
+  };
+
+  return (
+    <div className="subNavbar">
+      <form className="search-bar">
+        <input
+          type="text"
+          id="searchbox-input"
+          placeholder="Search"
+          onChange={handleOnTextChange}
+        ></input>
+        <i className="material-icons">search</i>
+      </form>
+      <div className="links">
+        <span className="help">
+          <i className="material-icons">help</i>Help
+        </span>
+        <div className="cart">
+          <a href="#">
+            My Cart<i className="material-icons">shopping_cart</i>
+          </a>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export function AboutUs() {
@@ -102,6 +148,7 @@ export function ContactUs() {
             123 Fake Street, San Francisco, CA
           </div>
           <div className="contactGridItem">Socials</div>
+          {/* <img src="https://codepath-student-store-demo.surge.sh/assets/happy_person.517b658d.svg" /> */}
         </div>
       </div>
     </div>
