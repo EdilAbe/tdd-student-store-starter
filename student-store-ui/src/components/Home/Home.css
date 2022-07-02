@@ -34,7 +34,11 @@
   height: 320px;
   color: white;
 }
-
+.category {
+  background-color: white;
+  font-weight: 500;
+  font-size: medium;
+}
 .media .contact-us {
   display: flex;
   flex-direction: column;
@@ -71,7 +75,7 @@
 }
 .cart a {
   color: #fff;
-  background: #00c385;
+  background: #5e1754;
   margin: 0 5px;
   text-decoration: none;
   width: 100px;
@@ -86,6 +90,7 @@
   align-items: center;
   flex: 1;
   margin-right: 70px;
+  height: 100px;
 }
 .subNavbar {
   display: flex;
@@ -96,25 +101,27 @@
 .search-bar .material-icons {
   height: 40px;
   width: 40px;
-  background: #00c385;
+  background: #5e1754;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .category-filter-bar {
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   flex: 1;
   list-style-type: none;
-  height: 40px;
-  font-weight: 500;
+  height: 70px;
+  font-weight: 600;
+  background-color: white;
 }
 
 .category-filter-bar li.is-active button {
-  border-bottom: solid 2px #00c385;
+  border-bottom: solid 2px #5e1754;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -132,4 +139,5 @@
   text-align: left;
   margin-top: 10px;
   font-weight: 500;
+  background-color: white;
 }

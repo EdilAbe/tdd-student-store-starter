@@ -37,11 +37,9 @@
 
 .sidebar-contents {
   margin-left: 15px;
+  width: 40%;
 }
-.sidenav .open {
-  width: 575px;
-  transition: 0.4s;
-}
+
 .closedIcon.closed {
   background-color: #2c4047;
   border: 0ch;
@@ -51,8 +49,9 @@
 .closedIcon.open {
   display: none;
 }
-.sidenav .closed {
-  width: 60px;
+
+.sidenav .open {
+  width: 150px;
   transition: 0.4s;
 }
 

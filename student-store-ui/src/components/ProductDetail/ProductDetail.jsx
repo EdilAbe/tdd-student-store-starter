@@ -2,63 +2,68 @@ import * as React from "react";
 import "./ProductDetail.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useState, useEffect } from "react";
 import ProductView from "/src/components/ProductView/ProductView";
 //import NotFound from "/src/components/NotFound/NotFound";
 
-export default function ProductDetail(props) {
-  const [chosenproduct, setChosenProduct] = React.useState(null);
-  const { productId } = useParams();
-  React.useEffect(async () => {
+export default function ProductDetail({
+  isFetching,
+  setIsFetching,
+  handleAddItemToCart,
+  handleRemoveItemFromCart,
+  shoppingCart,
+  setError,
+}) {
+  let { productId } = useParams();
+  const [products, setProducts] = useState({});
+
+  async function getSelectedProduct() {
+    setError("");
+    setIsFetching(true);
     try {
       const response = await axios.get(
-        "https://codepath-store-api.herokuapp.com/store/${productId}"
+        `http://localhost:3001/store/${productId}`
       );
-      setChosenProduct(response.data.products);
-      console.log("received this data:", response.data.products);
+
+      if (response?.data?.products) {
+        setProducts(response.data.products);
+      } else {
+        setError("Cannot find product");
+      }
+      console.log("received this product data:", response.data.products);
     } catch (error) {
       console.log(error);
+      setError("error");
     }
-  }, []);
 
-  // const getProductData = async () => {
-  //   props.setIsFetching(true);
-  //   try {
-  //     const response = await axios.get(
-  //       `https://codepath-store-api.herokuapp.com/store/${productId}`
-  //     );
-  //     setProduct(response.data.product);
-  //     console.log("received this product data:", response.data.product);
-  //   } catch (error) {
-  //     props.setError(error);
-  //     console.log(props.error);
-  //   } finally {
-  //     props.setIsFetching(false);
-  //   }
-  // };
-
-  // React.useEffect(() => {
-  //   getProductData();
-  // }, []);
-  if (chosenproduct === null) {
-    return <NotFound />;
+    setIsFetching(false);
   }
 
-  productQuantity = props.shoppingCart.find(
-    (item) => item.itemId === product.id
-  )
-    ? props.shoppingCart.find((item) => item.itemId === product.id).quantity
-    : null;
+  useEffect(() => {
+    getSelectedProduct();
+  }, []);
+  console.log("product-detail:", products);
 
+  // if (selectedProduct === null) {
+  //   return <NotFound />;
+  // }
+
+  // productQuantity = shoppingCart.find((item) => item.itemId === products.id)
+  //   ? shoppingCart.find((item) => item.itemId === products.id).quantity
+  //   : null;
+  // if (isFetching) {
+  //   return <h1 className="loading">Loading...</h1>;
+  // }
   return (
     <div className="Product-detail">
       <ProductView
-        products={chosenproduct}
-        //  productId={productId}
-        quantity={productQuantity}
-        handleAddItemToCart={props.handleAddItemToCart}
-        handleRemoveItemFromCart={props.handleRemoveItemFromCart}
-        //shoppingCart={props.shoppingCart}
-        showDescription={props.showDescription}
+        products={products}
+        productId={productId}
+        //quantity={productQuantity}
+        handleAddItemToCart={handleAddItemToCart}
+        handleRemoveItemFromCart={handleRemoveItemFromCart}
+        shoppingCart={shoppingCart}
+        //showDescription={showDescription}
       />
     </div>
   );

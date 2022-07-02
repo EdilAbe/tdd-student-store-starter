@@ -2,33 +2,61 @@ import * as React from "react";
 import Navbar from "/src/components/Navbar/Navbar";
 import Sidebar from "/src/components/Sidebar/Sidebar";
 import Home from "/src/components/Home/Home";
-import Hero from "/src/components/Hero/Hero";
+//import Hero from "/src/components/Hero/Hero";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "/src/components/NotFound/Notfound";
 import ProductDetail from "/src/components/ProductDetail/ProductDetail";
 import axios from "axios";
 import Footer from "/src/components/Footer/Footer";
+import { useState, useEffect } from "react";
 
 export default function App() {
-  const [isFetching, setIsFetching] = React.useState();
-  const [products, setProducts] = React.useState([]);
-  const [isOpen, setIsOpen] = React.useState("");
-  // const [error, setError] = React.useState("");
-  const [shoppingCart, setShoppingCart] = React.useState(0);
-  const [checkoutForm, setCheckoutForm] = React.useState("");
+  const [isFetching, setIsFetching] = useState();
+  const [products, setProducts] = useState([]);
+  const [isOpen, setIsOpen] = useState("");
+  const [error, setError] = useState("");
+  const [shoppingCart, setShoppingCart] = useState([]);
+  const [checkoutForm, setCheckoutForm] = useState({
+    name: "",
+    email: "",
+  });
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  const [receipt, setReceipt] = useState([]);
+
+  async function getResults() {
+    setError("");
+    setIsFetching(true);
+    try {
+      const response = await axios.get("http://localhost:3001/store");
+      setProducts(response.data.products);
+      console.log("received this data:", response.data.products);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsFetching(false);
+    }
+  }
+
+  useEffect(() => {
+    getResults();
+  }, []);
 
   function handleOnToggle() {
     setIsOpen(!isOpen);
   }
 
   const handleAddItemToCart = (productId) => {
-      for (let i = 0; i < shoppingCart.length; i++) {
-        if (shoppingCart[i].productId === productId) {
-          shoppingCart[i].quantity++;
-          setShoppingCart([...shoppingCart]);
-          return;  }  
-  }};
+    for (let i = 0; i < shoppingCart.length; i++) {
+      if (shoppingCart[i].productId === productId) {
+        shoppingCart[i].quantity++;
+        setShoppingCart([...shoppingCart]);
+        return;
+      }
+    }
+  };
 
   const handleRemoveItemFromCart = (productId) => {
     for (var i = 0; i < shoppingCart.length; i++) {
@@ -40,29 +68,54 @@ export default function App() {
         }
         setShoppingCartPrice(shoppingCartPrice - price);
         setShoppingCart([...shoppingCart]);
-        return;    }
-  }};
+        return;
+      }
+    }
+  };
 
   function handleOnCheckoutFormChange(name, value) {
-    setCheckoutForm([name, value]);
+    setCheckoutForm({
+      ...checkoutForm,
+      [name]: value,
+    });
   }
-
-  //function handleOnSubmitCheckoutForm() {}
-
-  React.useEffect(async () => {
-    setIsFetching(true);
+  const listOfShoppingCart = () => {
+    return shoppingCart.map((item) => {
+      return {
+        itemId: item.productId,
+        quantity: item.quantity,
+      };
+    });
+  };
+  const handleOnSubmitCheckoutForm = async (evt) => {
+    evt.preventDefault();
     try {
-      const response = await axios.get(
-        "https://codepath-store-api.herokuapp.com/store"
-      );
-      setProducts(response.data.products);
-      console.log("received this data:", response.data.products);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsFetching(false);
+      const response = await axios.post("http://localhost:3001/store", {
+        user: checkoutForm,
+        shoppingCart: listOfShoppingCart,
+      });
+      setReceipt(response.data.purchase.receipt);
+      console.log(receipt);
+    } catch (err) {
+      console.log(err);
     }
-  }, []);
+  };
+
+  const selectedProducts = products.filter((item) => {
+    try {
+      if (
+        item.name.toLowerCase().match(searchQuery) !== null &&
+        (selectedCategory === "All Catergories" ||
+          selectedCategory === item.category)
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch {
+      return false;
+    }
+  });
 
   return (
     <div className="app">
@@ -70,12 +123,14 @@ export default function App() {
         <main>
           <Navbar />
           <Sidebar
-            // products={products}
+            products={products}
             isOpen={isOpen}
             shoppingCart={shoppingCart}
             checkoutForm={checkoutForm}
             handleOnCheckoutFormChange={handleOnCheckoutFormChange}
             handleOnToggle={handleOnToggle}
+            handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}
+            receipt={receipt}
           />
           <Routes>
             <Route
@@ -83,7 +138,13 @@ export default function App() {
               element={
                 <Home
                   products={products}
+                  setProducts={setProducts}
                   shoppingCart={shoppingCart}
+                  selectedProducts={selectedProducts}
+                  searchQuery={searchQuery}
+                  setSearchQuery={setSearchQuery}
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
                   handleAddItemToCart={handleAddItemToCart}
                   handleRemoveItemFromCart={handleRemoveItemFromCart}
                 />
@@ -94,10 +155,11 @@ export default function App() {
               path="/products/:productId"
               element={
                 <ProductDetail
+                  products={products}
                   isFetching={isFetching}
                   setIsFetching={setIsFetching}
                   // error={error}
-                  // setError={setError}
+                  setError={setError}
                   shoppingCart={shoppingCart}
                   handleAddItemToCart={handleAddItemToCart}
                   handleRemoveItemFromCart={handleRemoveItemFromCart}

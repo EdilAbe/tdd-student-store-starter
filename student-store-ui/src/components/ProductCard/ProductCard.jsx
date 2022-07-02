@@ -2,46 +2,57 @@ import * as React from "react";
 import "./ProductCard.css";
 import { Link } from "react-router-dom";
 
-export default function ProductCard(props) {
+export default function ProductCard({
+  products,
+  productId,
+  showDescription,
+  quantity,
+  handleAddItemToCart,
+  handleRemoveItemFromCart,
+}) {
   //console.log(props.data);
   return (
     <div className="product-card">
       <div className="media">
-        {/* <img src={props.product.image} /> */}
-        <Link to={"/products/" + props.productId}>
-          <img src={props.product.image} />
+        <Link to={"/products/" + productId}>
+          <img src={products.image} />
         </Link>
       </div>
       <div className="product-info">
         <div className="product-name">
-          <p>{props.product.name}</p>
+          <p>{products.name}</p>
         </div>
         <div className="product-price">
-          <p>${props.product.price}</p>
+          {/* <p className="product-price">${products.price.toFixed(2)}</p> */}
+          <p className="product-price">${products.price}</p>
         </div>
 
         <div className="product-description">
-          <p>{props.showDescription ? props.product.description : null}</p>
+          <p>{showDescription ? products.description : null}</p>
         </div>
 
         <div className="itemBtn">
           <button
             className="remove"
-            onClick={() => props.handleRemoveItemFromCart(props.productId)}
+            onClick={() => {
+              handleRemoveItemFromCart(productId);
+            }}
           >
             -
           </button>
           <button
             className="add"
-            onClick={() => props.handleAddItemToCart(props.productId)}
+            onClick={() => {
+              handleAddItemToCart(productId);
+            }}
           >
             +
           </button>
         </div>
 
-        {props.quantity > 0 ? (
+        {quantity > 0 ? (
           <div className="product-quantity">
-            <span className="amount">{props.quantity}</span>
+            <span className="amount">{quantity}</span>
           </div>
         ) : null}
 

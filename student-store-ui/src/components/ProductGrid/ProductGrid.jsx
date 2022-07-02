@@ -9,15 +9,21 @@ export default function ProductGrid({
   shoppingCart,
   handleRemoveItemFromCart,
 }) {
+  console.log("products: ", products);
+  console.log("shopping cart", shoppingCart);
   return (
     <div className="product-grid">
       {products.map((item) => {
+        var purchasedQuantity = shoppingCart.find(
+          (element) => element.itemId === item.id
+        );
+        var quantity = purchasedQuantity ? purchasedQuantity.quantity : 0;
         return (
           <ProductCard
             key={item.id}
-            product={item}
+            products={item}
             productId={item.id}
-            // quantity={quantity}
+            quantity={quantity}
             handleAddItemToCart={handleAddItemToCart}
             handleRemoveItemFromCart={handleRemoveItemFromCart}
             showDescription={false}

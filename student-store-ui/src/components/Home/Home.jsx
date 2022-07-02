@@ -9,20 +9,34 @@ import { Link } from "react-router-dom";
 export default function Home({
   products,
   handleAddItemToCart,
-  handleRemoveItemToCart,
+  handleRemoveItemFromCart,
+  searchQuery,
+  setSearchQuery,
+  shoppingCart,
+  setProducts,
+  selectedCategory,
+  setSelectedCategory,
+  selectedProducts,
 }) {
+  console.log("Products received by home:", products);
   return (
     <div className="home">
       <Hero />
       <div className="main-content">
-        <SubNavbar />
-        <CategoryFilterBar />
+        <SubNavbar setSearchQuery={setSearchQuery} />
+        <CategoryFilterBar
+          setSelectedCategory={setSelectedCategory}
+          selectedCategory={selectedCategory}
+          selectedProducts={selectedProducts}
+        />
         <div className="product-area">
           <ProductGrid
+            searchQuery={searchQuery}
+            selectedCategory={selectedCategory}
             products={products}
-            // shoppingCart={shoppingCart}
-            // handleAddItemToCart={handleAddItemToCart}
-            // handleRemoveItemFromCart={handleRemoveItemFromCart}
+            shoppingCart={shoppingCart}
+            handleAddItemToCart={handleAddItemToCart}
+            handleRemoveItemFromCart={handleRemoveItemFromCart}
           />
         </div>
         <div ClassName="summmary">
@@ -34,48 +48,72 @@ export default function Home({
   );
 }
 
-export function CategoryFilterBar() {
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.id);
-  };
+export function CategoryFilterBar({ selectedCategory, setSelectedCategory }) {
+  // const handleCategoryChange = (event) => {
+  //   setSelectedCategory(event.target.id);
+  // };
+  const listOfCategories = [
+    "All Categories",
+    "clothing",
+    "Food",
+    "Accessories",
+    "Tech",
+  ];
+
   return (
-    <div className="category-filter">
-      <ul className="category-filter-bar">
-        <li className="is-active">
-          <button id="all" onClick={handleCategoryChange}>
-            All Categories
+    // <div className="category-filter">
+    //   <ul className="category-filter-bar">
+    //     <li className="is-active">
+    //       <button id="all" onClick={handleCategoryChange}>
+    //         All Categories
+    //       </button>
+    //     </li>
+    //     <li className="is-active">
+    //       <button id="clothing" onClick={handleCategoryChange}>
+    //         Clothing
+    //       </button>
+    //     </li>
+    //     <li className="is-active">
+    //       <button id="food" onClick={handleCategoryChange}>
+    //         Food
+    //       </button>
+    //     </li>
+    //     <li className="is-active">
+    //       <button id="accessories" onClick={handleCategoryChange}>
+    //         Accessories
+    //       </button>
+    //     </li>
+    //     <li className="is-active">
+    //       <button id="tech" onClick={handleCategoryChange}>
+    //         Tech
+    //       </button>
+    //     </li>
+    //   </ul>
+    // </div>
+    <div className="category-filter-bar">
+      {listOfCategories.map((category, idx) => {
+        return (
+          <button
+            className="category"
+            key={idx}
+            id={`${selectedCategory === category ? "selected" : ""} `}
+            onClick={() => {
+              setSelectedCategory(category);
+            }}
+          >
+            {category}
           </button>
-        </li>
-        <li className="is-active">
-          <button id="clothing" onClick={handleCategoryChange}>
-            Clothing
-          </button>
-        </li>
-        <li className="is-active">
-          <button id="food" onClick={handleCategoryChange}>
-            Food
-          </button>
-        </li>
-        <li className="is-active">
-          <button id="accessories" onClick={handleCategoryChange}>
-            Accessories
-          </button>
-        </li>
-        <li className="is-active">
-          <button id="tech" onClick={handleCategoryChange}>
-            Tech
-          </button>
-        </li>
-      </ul>
+        );
+      })}
     </div>
   );
 }
 
-export function SubNavbar() {
+export function SubNavbar({ setSearchQuery }) {
   const handleOnTextChange = (event) => {
-    setSearchValue(event.target.value);
+    setSearchQuery(event.target.value);
   };
-
+  const handleOnSearch = () => {};
   return (
     <div className="subNavbar">
       <form className="search-bar">
@@ -85,7 +123,9 @@ export function SubNavbar() {
           placeholder="Search"
           onChange={handleOnTextChange}
         ></input>
-        <i className="material-icons">search</i>
+        <button onClick={handleOnSearch}>
+          <i className="material-icons">search</i>{" "}
+        </button>
       </form>
       <div className="links">
         <span className="help">
