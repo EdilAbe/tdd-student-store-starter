@@ -163,9 +163,7 @@ export function AboutUs() {
         </div>
         <div className="about-img">
           <Link to="/">
-            {
-              <img src="https://codepath-student-store-demo.surge.sh/assets/codepath.f1b3e41a.svg" />
-            }
+            <img src="https://codepath-student-store-demo.surge.sh/assets/codepath.f1b3e41a.svg" />
           </Link>
         </div>
       </div>
@@ -179,15 +177,14 @@ export function ContactUs() {
       <h2 className="section-header">Contact Us</h2>
       <div className="contactUsBody">
         <div className="contactUsGrid">
-          <div className="contactGridItem">Email</div>
-          <div className="contactGridItem">code@path.org</div>
-          <div className="contactGridItem">Phone</div>
-          <div className="contactGridItem">1-800-CODEPATH</div>
-          <div className="contactGridItem">Address</div>
-          <div className="contactGridItem">
+          <div className="contactGridMethod">Email</div>
+          <div className="contactGridDetail">code@path.org</div>
+          <div className="contactGridMethod">Phone</div>
+          <div className="contactGridDetail">1-800-CODEPATH</div>
+          <div className="contactGridMethod">Address</div>
+          <div className="contactGridDetail">
             123 Fake Street, San Francisco, CA
           </div>
-          <div className="contactGridItem">Socials</div>
           {/* <img src="https://codepath-student-store-demo.surge.sh/assets/happy_person.517b658d.svg" /> */}
         </div>
       </div>

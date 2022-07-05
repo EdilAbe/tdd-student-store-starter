@@ -58,7 +58,7 @@ export default function ProductDetail({
     <div className="Product-detail">
       <ProductView
         products={products}
-        productId={productId}
+        productsId={productsId}
         //quantity={productQuantity}
         handleAddItemToCart={handleAddItemToCart}
         handleRemoveItemFromCart={handleRemoveItemFromCart}

@@ -2,23 +2,17 @@ import * as React from "react";
 import "./CheckoutForm.css";
 
 export default function CheckoutForm({
-  isOpen = false,
-  shoppingCart = [],
+  receipt,
   checkoutForm = {
     name: "",
     email: "",
   },
-  handleOnCheckoutFormChange = () => {},
-  handleOnSubmitCheckoutForm = () => {},
-  checkoutMessage = "",
-  purchaseOrder = {},
-  setPurchaseOrder = () => {},
+
+  handleOnCheckoutFormChange,
+  handleOnSubmitCheckoutForm,
 }) {
-  function handleExitCurrentPurchase() {
-    setPurchaseOrder({});
-  }
   return (
-    <div className={isOpen ? "checkout-form" : "checkout-form closed"}>
+    <div className="checkout-form">
       <h3>
         Payment Info
         <span>
@@ -35,7 +29,7 @@ export default function CheckoutForm({
             placeholder="Student Name"
             value={checkoutForm.name}
             onChange={(evt) =>
-              handleOnCheckoutFormChange("name", evt.target.value)
+              handleOnCheckoutFormChange(evt.target.name, evt.target.value)
             }
           />
         </div>
@@ -81,54 +75,11 @@ export default function CheckoutForm({
           >
             Checkout
           </button>
-          <CheckoutInfo
-            purchaseOrder={purchaseOrder}
-            handleExitCurrentPurchase={handleExitCurrentPurchase}
-            checkoutMessage={checkoutMessage}
-          />
         </div>
       </div>
+      {receipt.map((element) => {
+        return <p>{element}</p>;
+      })}
     </div>
   );
-}
-export function CheckoutInfo({
-  purchaseOrder = {},
-  handleExitCurrentPurchase = () => {},
-  checkoutMessage = "",
-}) {
-  if (checkoutMessage === "Success!" && purchaseOrder?.receipt) {
-    return (
-      <div className="checkout-info">
-        <p className="success">Success!</p>
-        <div className="receipt">
-          <p>
-            Showing receipt for {purchaseOrder?.name} available at{" "}
-            {purchaseOrder?.email}
-          </p>
-        </div>
-        <ul className="receipt-list">
-          {purchaseOrder.receipt.map((receiptEntry, index) => {
-            return <li key={index}>{receiptEntry}</li>;
-          })}
-        </ul>
-
-        <button
-          className="exit-purchase-button"
-          onClick={handleExitCurrentPurchase}
-        >
-          Exit
-        </button>
-      </div>
-    );
-  } else {
-    return (
-      <div className="checkout-info">
-        <p>
-          A confirmation email will be sent to you so that you can confirm this
-          order. Once you have confirmed the order, it will be delivered to your
-          dorm room.
-        </p>
-      </div>
-    );
-  }
 }

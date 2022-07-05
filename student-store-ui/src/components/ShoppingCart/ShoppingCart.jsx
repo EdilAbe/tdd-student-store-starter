@@ -1,11 +1,11 @@
 import * as React from "react";
 import "./ShoppingCart.css";
 
-export default function ShoppingCart({ isOpen, shoppingCart = [], product }) {
+export default function ShoppingCart({ isOpen, shoppingCart = [], products }) {
   let subTotal = 0;
   let taxes = 0;
   let total = 0;
-  if (shoppingCart.length === 0) {
+  if (shoppingCart.length == 0) {
     return (
       <div className="shopping-cart">
         <p className="notification">
@@ -14,11 +14,11 @@ export default function ShoppingCart({ isOpen, shoppingCart = [], product }) {
       </div>
     );
   } else {
-    return shoppingCart.map(
+    shoppingCart.map(
       (item) => {
-        let name = product.find((element) => element.id === item.itemId).name;
+        let name = products.find((element) => element.id === item.itemId).name;
         let quantity = item.quantity;
-        let price = product
+        let price = products
           .find((element) => element.id === item.itemId)
           .price.toFixed(2);
         let cost = (quantity * price).toFixed(2);
@@ -26,7 +26,7 @@ export default function ShoppingCart({ isOpen, shoppingCart = [], product }) {
         taxes = 0.0875 * subTotal;
         total = subTotal + taxes;
         return (
-          <div className="open">
+          <div className="shopping-cart">
             <h3 className="">
               Shopping Cart
               <span className="button">
@@ -36,12 +36,10 @@ export default function ShoppingCart({ isOpen, shoppingCart = [], product }) {
 
             <div className="Table">
               <div className="header">
-                <div className="header-row">
-                  <span className="center">Name</span>
-                  <span className="center">Quantity</span>
-                  <span className="center">Unit Price</span>
-                  <span className="center">Cost</span>
-                </div>
+                <span className="center">Name</span>
+                <span className="center">Quantity</span>
+                <span className="center">Unit Price</span>
+                <span className="center">Cost</span>
               </div>
 
               <div className="product-row">
@@ -54,27 +52,20 @@ export default function ShoppingCart({ isOpen, shoppingCart = [], product }) {
               </div>
             </div>
             <div className="receipt">
-              <div className="receipt-subtotal">
+              <div className="subtotal-receipt">
                 <span className="label">Subtotal</span>
-                <span></span>
-                <span></span>
-                <span className="center subtotal">
-                  {"$" + subTotal.toFixed(2)}
-                </span>
+                <p></p>
+                <span className=" subtotal">{"$" + subTotal.toFixed(2)}</span>
               </div>
               <div className="receipt-taxes">
                 <span className="label">Taxes and Fees</span>
-                <span></span>
-                <span></span>
-                <span className="center">{"$" + taxes.toFixed(2)}</span>
+                <p></p>
+                <span className="taxes">{"$" + taxes.toFixed(2)}</span>
               </div>
-              <div className="receipt-total">
+              <div className="receipt-total-price">
                 <span className="label">Total</span>
-                <span></span>
-                <span></span>
-                <span className="center total-price">
-                  {"$" + total.toFixed(2)}
-                </span>
+                <p></p>
+                <span className="total-price">{"$" + total.toFixed(2)}</span>
               </div>
             </div>
           </div>

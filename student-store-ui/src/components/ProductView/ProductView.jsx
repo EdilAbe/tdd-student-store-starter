@@ -14,7 +14,7 @@ const ProductView = (
       <h1 className="product-id">Product #{productId}</h1>
       <ProductCard
         products={products}
-        productId={productId}
+        productsId={productsId}
         quantity={quantity}
         handleAddItemToCart={handleAddItemToCart}
         handleRemoveItemFromCart={handleRemoveItemFromCart}

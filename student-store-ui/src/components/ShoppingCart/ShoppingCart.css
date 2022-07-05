@@ -3,10 +3,50 @@ table {
   text-align: left;
 }
 
-table,
-thead,
-th,
-tr,
-td {
-  border: solid black;
+.header {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: solid 1px white;
+  border-radius: 5px;
+}
+.product-row {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 20px;
+  margin-top: 10px;
+  border-bottom: solid 1px white;
+}
+.shopping-cart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: white;
+}
+
+.receipt {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 4px;
+  margin-top: 10px;
+  color: black;
+}
+.subtotal-receipt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+.receipt-taxes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+.receipt-total-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
 }

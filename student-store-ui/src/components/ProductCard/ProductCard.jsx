@@ -34,27 +34,21 @@ export default function ProductCard({
         <div className="itemBtn">
           <button
             className="remove"
-            onClick={() => {
-              handleRemoveItemFromCart(productId);
-            }}
+            onClick={() => handleRemoveItemFromCart(productId)}
           >
             -
           </button>
           <button
             className="add"
-            onClick={() => {
-              handleAddItemToCart(productId);
-            }}
+            onClick={() => handleAddItemToCart(productId)}
           >
             +
           </button>
         </div>
 
-        {quantity > 0 ? (
-          <div className="product-quantity">
-            <span className="amount">{quantity}</span>
-          </div>
-        ) : null}
+        <div className="product-quantity">
+          <p>{quantity > 0 ? quantity : ""}</p>
+        </div>
 
         {/* add a strech feature */}
       </div>
